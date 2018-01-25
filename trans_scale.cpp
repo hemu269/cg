@@ -3,7 +3,7 @@
 #include<GL/glut.h>
 #include<bits/stdc++.h>
 using namespace std;
-int hi=20,poly=4,x_=300,y_=300,iserase=0;
+int hi=20,poly=4,x_=300,y_=300,iserase=0,xr,yr;
 void init()
 {
 glClearColor(1,1,1,1);
@@ -62,12 +62,35 @@ void mouse(int btn,int state,int x,int y)
 {
 if(btn==GLUT_LEFT_BUTTON&&state==GLUT_DOWN)
 {
-float t=10;
+float t=20;
 int x1=x_,y1=y_;
 for(int i=t-1;i>=0;i--)
 {
 iserase=1; display(x_,y_);
 x_=x+(x1-x)*(i/t);
+y_=y+(y1-y)*(i/t);
+iserase=0; display(x_,y_);
+for(int j=0;j<10000000;j++);
+}
+}
+if(btn==GLUT_MIDDLE_BUTTON&&state==GLUT_DOWN)
+{
+
+}
+if(btn==GLUT_RIGHT_BUTTON&&state==GLUT_DOWN)
+{
+float t=20;
+int x1=x_,y1=y_;
+for(int i=t-1;i>=0;i--)
+{
+iserase=1; display(x_,y_);
+x_=x+(x1-x)*(i/t);
+iserase=0; display(x_,y_);
+for(int j=0;j<10000000;j++);
+}
+for(int i=t-1;i>=0;i--)
+{
+iserase=1; display(x_,y_);
 y_=y+(y1-y)*(i/t);
 iserase=0; display(x_,y_);
 for(int j=0;j<10000000;j++);
@@ -79,7 +102,7 @@ void keyboard(unsigned char a,int x,int y)
 {
 switch(a)
 {
-        case '+': iserase=1; display(x_,y_); iserase=0; if(hi<300) hi*=2;    display(x_,y_);                     break;
+        case '+': iserase=1; display(x_,y_); iserase=0; if(hi<150) hi*=2;   display(x_,y_);                     break;
         case '-': iserase=1; display(x_,y_); iserase=0; if(hi>2) hi/=2;     display(x_,y_);                     break;
         case 'a': iserase=1; display(x_,y_); iserase=0; x_-=10;             display(x_,y_);                     break;
         case 's': iserase=1; display(x_,y_); iserase=0; y_+=10;             display(x_,y_);                     break;
